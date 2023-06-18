@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return inertia('welcome',[
-        'name'=>"Shankar"
-    ]);
+    return inertia('Login');
 });
 
 Route::get('/second',function(){

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return inertia('Login');
+})->name('login');
+Route::get('/signup', function () {
+    return inertia('Signup');
+})->name('signup');
+
+
+Route::controller(AuthController::class)->group(function(){
+    Route::post('/signup','signup');
+    Route::post('/login','login');
 });
 
-Route::get('/second',function(){
-    return inertia('second');
-})->middleware('loggin');
-
-Route::get('/third', function () {
-    return inertia('third');
+Route::controller(TodoController::class)->group(function(){
+    Route::get('/todos','list')->name('todos');
+    Route::post('/add','add')->name('add');
+    Route::post('/update-status','update_status');
+    Route::post('/delete','delete');
 });

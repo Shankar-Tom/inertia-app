@@ -25,7 +25,7 @@ class TodoController extends Controller
             'user_id'=>auth()->id(),
             'task'=>$request->task
         ]);
-        return redirect()->route('todos');
+        return redirect()->route('todos')->with(['status'=>true,'message'=>"Task added"]);
     }
 
     public function update_status(Request $request)
@@ -37,7 +37,7 @@ class TodoController extends Controller
     public function delete(Request $request)
     {
             Task::find($request->id)->delete();
-            return redirect()->route('todos');
+            return redirect()->route('todos')->with(['status'=>false,'message'=>"Task delete"]);
 
     }
 }

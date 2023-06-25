@@ -6,6 +6,10 @@
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem">
             <div class="card-body p-5 text-center">
+              <div class="alert alert-danger">
+                {{$page.props.flash.message}}
+              </div>
+              
               <form @submit.prevent="form.post('/login')">
                 <div class="mb-md-5 mt-md-4 pb-5">
                   <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
@@ -68,10 +72,15 @@
 
 <script setup>
 import { Link, Head, useForm } from "@inertiajs/vue3";
+import swal from 'sweetalert'
+defineProps:{
+  
+}
 const form = useForm({
   email: null,
   password: null,
 });
+
 </script>
 
 <style>

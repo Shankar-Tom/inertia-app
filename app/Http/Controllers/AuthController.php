@@ -35,4 +35,10 @@ class AuthController extends Controller
             return redirect()->route('todos');
         }
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }

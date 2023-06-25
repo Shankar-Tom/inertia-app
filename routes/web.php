@@ -26,9 +26,10 @@ Route::get('/signup', function () {
 Route::controller(AuthController::class)->group(function(){
     Route::post('/signup','signup');
     Route::post('/login','login');
+    Route::post('/logout','logout');
 });
 
-Route::controller(TodoController::class)->group(function(){
+Route::controller(TodoController::class)->middleware('loggin')->group(function(){
     Route::get('/todos','list')->name('todos');
     Route::post('/add','add')->name('add');
     Route::post('/update-status','update_status');
